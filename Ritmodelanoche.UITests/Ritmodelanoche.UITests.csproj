@@ -37,9 +37,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ritmodelanoche\Ritmodelanoche.csproj">
+    <ProjectReference Include="..\Ritmodelanoche.Android\Ritmodelanoche.Android.csproj">
       <Project>{78556408-5A26-4C77-BA03-BE48AADF71F4}</Project>
-      <Name>Ritmodelanoche</Name>
+      <Name>Ritmodelanoche.Android</Name>
       <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
       <Private>False</Private>
     </ProjectReference>

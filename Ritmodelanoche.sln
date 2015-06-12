@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ritmodelanoche", "Ritmodelanoche\Ritmodelanoche.csproj", "{78556408-5A26-4C77-BA03-BE48AADF71F4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ritmodelanoche.UITests", "Ritmodelanoche.UITests\Ritmodelanoche.UITests.csproj", "{3BE6683C-DB1C-4DC0-8E01-B8F8EFEC80A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ritmodelanoche.Android", "Ritmodelanoche.Android\Ritmodelanoche.Android.csproj", "{78556408-5A26-4C77-BA03-BE48AADF71F4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
