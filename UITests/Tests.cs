@@ -20,16 +20,12 @@ namespace Ritmodelanoche.UITests
 		}
 
 		[Test]
-		public void ClickingButtonTwiceShouldChangeItsLabel ()
+		public void WelcomeTextIsDisplayed ()
 		{
-			Func<AppQuery, AppQuery> MyButton = c => c.Button ("myButton");
+			AppResult[] results = app.WaitForElement (c => c.Marked ("Welcome to Xamarin Forms!"));
+			app.Screenshot ("Welcome screen.");
 
-			app.Tap (MyButton);
-			app.Tap (MyButton);
-			AppResult[] results = app.Query (MyButton);
-			app.Screenshot ("Button clicked twice.");
-
-			Assert.AreEqual ("2 clicks!", results [0].Text);
+			Assert.IsTrue (results.Any ());
 		}
 	}
 }
