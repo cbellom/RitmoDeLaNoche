@@ -6,10 +6,14 @@ namespace Ritmodelanoche
 {
 	public class App : Application
 	{
-		public App ()
+
+		
+	public App ()
 		{
+			
+
 			// The root page of your application
-			/*MainPage = new ContentPage {
+			MainPage = new ContentPage {
 				Content = new StackLayout {
 					VerticalOptions = LayoutOptions.Center,
 					Children = {
@@ -19,7 +23,7 @@ namespace Ritmodelanoche
 						}
 					}
 				}
-			};*/
+			};
 
 			var tabs = new TabbedPage ();
 
@@ -40,7 +44,7 @@ namespace Ritmodelanoche
 
 		protected override void OnStart ()
 		{
-			// Handle when your app starts
+			
 		}
 
 		protected override void OnSleep ()
