@@ -27,7 +27,6 @@ namespace Ritmodelanoche
 			AbsoluteLayout simpleLayout = new AbsoluteLayout {
 
 
-
 				BackgroundColor = Color.Blue.WithLuminosity (0.9),
 
 				VerticalOptions = LayoutOptions.FillAndExpand
