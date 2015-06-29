@@ -24,13 +24,9 @@ namespace Ritmodelanoche
 
 		{
 
-			AbsoluteLayout simpleLayout = new AbsoluteLayout {
-
-
-				BackgroundColor = Color.Blue.WithLuminosity (0.9),
-
+			RelativeLayout simpleLayout = new RelativeLayout {
+				BackgroundColor = Color.White,
 				VerticalOptions = LayoutOptions.FillAndExpand
-
 			};
 
 			var tapGestureRecognizer = 
@@ -52,53 +48,26 @@ namespace Ritmodelanoche
 			};
 
 
+			simpleLayout.Children.Add (
+				topLeftText,
+				Constraint.RelativeToParent ((parent) =>{
+					return	(parent.Width - topLeftText.Width ) / 2;
+				}),
+				Constraint.RelativeToParent((parent) => {
+					return	(parent.Height - topLeftText.Height ) / 2;
+				})
+			);
 
-			AbsoluteLayout.SetLayoutFlags (topLeftText,
-
-				AbsoluteLayoutFlags.None);
-
-
-
-			AbsoluteLayout.SetLayoutBounds (topLeftText,
-
-				new Rectangle (0f, 0f,  100f, 50f));
-
-
-
-			middleText = new Label {
-
-				Text = "Device-dependent location",
-
-				TextColor = Color.Black
-
-			};
-
-
-
-			AbsoluteLayout.SetLayoutFlags (middleText,
-
-				AbsoluteLayoutFlags.None);
-
-
-
-			AbsoluteLayout.SetLayoutBounds (middleText,
-
-				new Rectangle (100f, 200f, 200f, 50f));
-
-
-
+			/*
 			simpleLayout.Children.Add (topLeftText);
 
 			simpleLayout.Children.Add (middleText);
-
+			*/
 
 
 			// Accomodate iPhone status bar.
 
 			this.Padding = new Thickness (10, Device.OnPlatform (20, 0, 0), 10, 5);
-
-
-
 
 
 			this.Content = new StackLayout {
