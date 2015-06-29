@@ -5,46 +5,30 @@ using Xamarin.Forms;
 
 
 namespace Ritmodelanoche
-
 {
-
 	public class AbsoluteLayoutDeviceUnits : ContentPage
-
 	{
-
-
-
 		int tapCount;
 
-		Label topLeftText, middleText;
+		Label topLeftText;
 		Image CounterFrame;
 		Image CounterBar;
 		Image TapSuccess;
 
-
 		public AbsoluteLayoutDeviceUnits ()
-
 		{
-
 			RelativeLayout simpleLayout = new RelativeLayout {
 				BackgroundColor = Color.FromHex("#27AAE1"),
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
-			var tapGestureRecognizer = 
-
-				new TapGestureRecognizer();
-
-			//tapGestureRecognizer.NumberOfTapsRequired = 2; // double-tap
+			var tapGestureRecognizer = new TapGestureRecognizer();
 
 			tapGestureRecognizer.Tapped += OnTapGestureRecognizerTapped;
-
 			simpleLayout.GestureRecognizers.Add(tapGestureRecognizer);
 
 			topLeftText = new Label {
-
 				Text = "0",
-
 				TextColor = Color.White,
 				FontSize = 36
 			};
@@ -55,6 +39,10 @@ namespace Ritmodelanoche
 
 			CounterFrame = new Image {
 				Source="marco_contador"
+			};
+
+			TapSuccess = new Image {
+				Source = "tap_exito"
 			};
 
 			simpleLayout.Children.Add (
@@ -87,43 +75,34 @@ namespace Ritmodelanoche
 				})
 			);
 
+			simpleLayout.Children.Add (
+				TapSuccess,
+				Constraint.RelativeToParent ((parent) =>{
+					return	(parent.Width - TapSuccess.Width ) / 2;
+				}),
+				Constraint.RelativeToParent((parent) => {
+					return	(parent.Height - TapSuccess.Height ) / 2;
+				})
+			);
+
 			// Accomodate iPhone status bar.
 
 			this.Padding = new Thickness (10, Device.OnPlatform (20, 0, 0), 10, 5);
 
-
 			this.Content = new StackLayout {
-
 				Children = {
-
-
-
 					simpleLayout
-
 				}
-
 			};
-
 		}
-
-
-
+			
 		void OnTapGestureRecognizerTapped(object sender, EventArgs args)
-
 		{
-
 			tapCount++;
-
 			topLeftText.Text = String.Format(
 				"{0}",
-
 				tapCount);
-
 		}
-
-
-
 	}
-
 }
 
