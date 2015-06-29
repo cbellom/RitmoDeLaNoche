@@ -17,7 +17,9 @@ namespace Ritmodelanoche
 		int tapCount;
 
 		Label topLeftText, middleText;
-
+		Image CounterFrame;
+		Image CounterBar;
+		Image TapSuccess;
 
 
 		public AbsoluteLayoutDeviceUnits ()
@@ -25,7 +27,7 @@ namespace Ritmodelanoche
 		{
 
 			RelativeLayout simpleLayout = new RelativeLayout {
-				BackgroundColor = Color.White,
+				BackgroundColor = Color.FromHex("#27AAE1"),
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
@@ -41,12 +43,39 @@ namespace Ritmodelanoche
 
 			topLeftText = new Label {
 
-				Text = "Left",
+				Text = "0",
 
-				TextColor = Color.Black
-
+				TextColor = Color.White,
+				FontSize = 36
 			};
 
+			CounterBar = new Image {
+				Source="barra_contador"
+			};
+
+			CounterFrame = new Image {
+				Source="marco_contador"
+			};
+
+			simpleLayout.Children.Add (
+				CounterBar,
+				Constraint.RelativeToParent ((parent) =>{
+					return 0;
+				}),
+				Constraint.RelativeToParent((parent) => {
+					return	(parent.Height - CounterBar.Height ) / 2;
+				})
+			);
+
+			simpleLayout.Children.Add (
+				CounterFrame,
+				Constraint.RelativeToParent ((parent) =>{
+					return (parent.Width - CounterFrame.Width ) / 2;
+				}),
+				Constraint.RelativeToParent((parent) => {
+					return	(parent.Height - CounterFrame.Height ) / 2;
+				})
+			);
 
 			simpleLayout.Children.Add (
 				topLeftText,
@@ -57,13 +86,6 @@ namespace Ritmodelanoche
 					return	(parent.Height - topLeftText.Height ) / 2;
 				})
 			);
-
-			/*
-			simpleLayout.Children.Add (topLeftText);
-
-			simpleLayout.Children.Add (middleText);
-			*/
-
 
 			// Accomodate iPhone status bar.
 
@@ -92,11 +114,10 @@ namespace Ritmodelanoche
 
 			tapCount++;
 
-			topLeftText.Text = String.Format("{0} tap{1} so far!",
+			topLeftText.Text = String.Format(
+				"{0}",
 
-				tapCount,
-
-				tapCount == 1 ? "" : "s");
+				tapCount);
 
 		}
 
