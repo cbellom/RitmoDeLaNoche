@@ -73,6 +73,7 @@
   <ItemGroup>
     <Folder Include="Resources\layout\" />
     <Folder Include="Resources\values\" />
+    <Folder Include="Assets\Fonts\" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
@@ -93,6 +94,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\cs_regular.ttf" />
+    <AndroidAsset Include="Assets\Fonts\cs_regular.ttf" />
   </ItemGroup>
 </Project>

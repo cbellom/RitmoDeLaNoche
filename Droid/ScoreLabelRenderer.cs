@@ -26,34 +26,16 @@ namespace Ritmodelanoche.Droid
 		{
 		}
 
-		/*
-		protected override void OnElementChanged (ElementChangedEventArgs<Label> e) {
-			base.OnElementChanged (e);
-			var label = (TextView) Control;
-
-			Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "cs_regular.ttf");
-			label.Typeface = font;
-
-			Log.Info (Tag, ">>>Setting typography"); 
-			
-		}
-		*/
-
 		protected override void OnElementPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
 
-			// check font file name
-			var typeface = Typeface.CreateFromAsset(Forms.Context.Assets, "cs_regular.ttf" );
+			var typeface = Typeface.CreateFromAsset(Forms.Context.Assets, "Fonts/cs_regular.ttf" );
 
-			// update font
 			var label = Control as TextView;
 			
 			if (label != null)
-				label.Typeface = typeface;
-
-			Log.Info (Tag, ">>>Setting typography"); 
-			
+				label.Typeface = typeface;		
 		}
 	}
 }
