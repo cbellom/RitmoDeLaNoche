@@ -1,12 +1,12 @@
 ﻿using System;
-
+using System.Diagnostics;
 using Xamarin.Forms;
 
 
 
 namespace Ritmodelanoche
 {
-	public class AbsoluteLayoutDeviceUnits : ContentPage
+	public class RitmoDeLaNocheMainPage : ContentPage
 	{
 		int tapCount;
 
@@ -14,11 +14,27 @@ namespace Ritmodelanoche
 		Image CounterFrame;
 		Image CounterBar;
 		Image TapSuccess;
+		private BoxView box;
+		private double duration = 2000;
+		private double elapsedTime = 0;
+		private Stopwatch stopWatch = new Stopwatch();
 
-		public AbsoluteLayoutDeviceUnits ()
+		AbsoluteLayout absoluteLayout;
+
+
+		public RitmoDeLaNocheMainPage ()
 		{
+			absoluteLayout = new AbsoluteLayout();
+			box = new BoxView { Color = Color.Accent };
+
+			absoluteLayout.Children.Add (box);
+
+			SizeChanged += HandlePageSizeChanged;
+			Device.StartTimer(TimeSpan.FromMilliseconds(16), HandleTimerTick);
+
+
+
 			RelativeLayout simpleLayout = new RelativeLayout {
-				BackgroundColor = Color.FromHex("#27AAE1"),
 				VerticalOptions = LayoutOptions.FillAndExpand
 			};
 
@@ -46,6 +62,16 @@ namespace Ritmodelanoche
 			};
 
 			simpleLayout.Children.Add (
+				absoluteLayout ,
+				Constraint.RelativeToParent ((parent) =>{
+					return 0;
+				}),
+				Constraint.RelativeToParent((parent) => {
+					return	0;
+				})
+			);
+
+			simpleLayout.Children.Add (
 				CounterBar,
 				Constraint.RelativeToParent ((parent) =>{
 					return 0;
@@ -54,6 +80,7 @@ namespace Ritmodelanoche
 					return	(parent.Height - CounterBar.Height ) / 2;
 				})
 			);
+
 
 			simpleLayout.Children.Add (
 				CounterFrame,
@@ -95,6 +122,34 @@ namespace Ritmodelanoche
 				}
 			};
 		}
+
+		void HandlePageSizeChanged(object sender, EventArgs args)
+		{
+			drawBox (this.Height);
+		}
+
+		bool HandleTimerTick()
+		{
+			elapsedTime += 16;
+			double cutoff = (this.Height * elapsedTime) / duration;
+			if (box.Height - cutoff <= 0)
+				drawBox(this.Height);
+			else
+				drawBox(this.Height - cutoff);
+			return true;
+		}
+
+		private void drawBox()
+		{
+			drawBox(this.Height);
+		}
+
+		private void drawBox(double height)
+		{
+			double y = this.Height - height;
+			AbsoluteLayout.SetLayoutBounds(box, new Rectangle(0, y, this.Width, height));
+		}
+
 			
 		void OnTapGestureRecognizerTapped(object sender, EventArgs args)
 		{
