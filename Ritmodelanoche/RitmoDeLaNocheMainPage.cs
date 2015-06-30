@@ -114,7 +114,7 @@ namespace Ritmodelanoche
 
 			// Accomodate iPhone status bar.
 
-			this.Padding = new Thickness (10, Device.OnPlatform (20, 0, 0), 10, 5);
+			//this.Padding = new Thickness (10, Device.OnPlatform (20, 0, 0), 10, 5);
 
 			this.Content = new StackLayout {
 				Children = {
