@@ -130,9 +130,12 @@ namespace Ritmodelanoche
 
 		bool HandleTimerTick()
 		{
+			if (elapsedTime + 16 > duration)
+				elapsedTime = 0;
 			elapsedTime += 16;
 			double cutoff = (this.Height * elapsedTime) / duration;
-			if (box.Height - cutoff <= 0)
+			//Debug.WriteLine (elapsedTime+" "+cutoff+" "+this.Height+" "+box.Height);
+			if (this.Height - cutoff <= 0)
 				drawBox(this.Height);
 			else
 				drawBox(this.Height - cutoff);
