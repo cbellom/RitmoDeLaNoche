@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS; 
+
 using Foundation;
 using UIKit;
 
@@ -15,7 +14,12 @@ namespace Ritmodelanoche.iOS
 		{
 			global::Xamarin.Forms.Forms.Init ();
 
-			LoadApplication (new App());
+			// Code for starting up the Xamarin Test Cloud Agent
+			#if ENABLE_TEST_CLOUD
+			Xamarin.Calabash.Start();
+			#endif
+
+			LoadApplication (new App ());
 
 			return base.FinishedLaunching (app, options);
 		}
