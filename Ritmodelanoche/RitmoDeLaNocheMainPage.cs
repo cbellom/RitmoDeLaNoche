@@ -17,7 +17,6 @@ namespace Ritmodelanoche
 		private BoxView box;
 		private double duration = 2000;
 		private double elapsedTime = 0;
-		private Stopwatch stopWatch = new Stopwatch();
 
 		AbsoluteLayout absoluteLayout;
 
@@ -112,10 +111,6 @@ namespace Ritmodelanoche
 				})
 			);
 
-			// Accomodate iPhone status bar.
-
-			//this.Padding = new Thickness (10, Device.OnPlatform (20, 0, 0), 10, 5);
-
 			this.Content = new StackLayout {
 				Children = {
 					simpleLayout
@@ -130,9 +125,11 @@ namespace Ritmodelanoche
 
 		bool HandleTimerTick()
 		{
+			if (elapsedTime + 16 > duration)
+				elapsedTime = 0;
 			elapsedTime += 16;
 			double cutoff = (this.Height * elapsedTime) / duration;
-			if (box.Height - cutoff <= 0)
+			if (this.Height - cutoff <= 0)
 				drawBox(this.Height);
 			else
 				drawBox(this.Height - cutoff);
