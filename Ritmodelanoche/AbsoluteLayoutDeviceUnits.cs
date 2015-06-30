@@ -10,7 +10,7 @@ namespace Ritmodelanoche
 	{
 		int tapCount;
 
-		Label topLeftText;
+		ScoreLabel topLeftText;
 		Image CounterFrame;
 		Image CounterBar;
 		Image TapSuccess;
@@ -27,7 +27,7 @@ namespace Ritmodelanoche
 			tapGestureRecognizer.Tapped += OnTapGestureRecognizerTapped;
 			simpleLayout.GestureRecognizers.Add(tapGestureRecognizer);
 
-			topLeftText = new Label {
+			topLeftText = new ScoreLabel {
 				Text = "0",
 				TextColor = Color.White,
 				FontSize = 36
