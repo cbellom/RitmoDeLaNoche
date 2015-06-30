@@ -108,6 +108,10 @@
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
     <None Include="packages.config" />
+    <None Include="Resources\barra_contador.png" />
+    <None Include="Resources\marco_contador.png" />
+    <None Include="Resources\tap_error.png" />
+    <None Include="Resources\tap_exito.png" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
