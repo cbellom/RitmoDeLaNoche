@@ -12,6 +12,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Graphics;
 
 [assembly: ExportRenderer (typeof (ScoreLabel), typeof (ScoreLabelRenderer))]
 namespace Ritmodelanoche.Droid
@@ -23,6 +24,10 @@ namespace Ritmodelanoche.Droid
 		}
 
 		protected override void OnElementChanged (ElementChangedEventArgs<Label> e) {
+			base.OnElementChanged (e);
+			var label = (TextView) Control; // for example
+			Typeface font = Typeface.CreateFromAsset (Forms.Context.Assets, "cs_regular.ttf");
+			label.Typeface = font;
 		}
 
 	}
