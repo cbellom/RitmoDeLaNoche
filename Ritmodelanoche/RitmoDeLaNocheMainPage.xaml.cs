@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
+
 using Xamarin.Forms;
 
 
 
 namespace Ritmodelanoche
 {
-	public class RitmoDeLaNocheMainPage : ContentPage
+	public partial class RitmoDeLaNocheMainPage : ContentPage
 	{
 		int tapCount;
 
@@ -23,6 +24,7 @@ namespace Ritmodelanoche
 
 		public RitmoDeLaNocheMainPage ()
 		{
+			InitializeComponent ();
 			absoluteLayout = new AbsoluteLayout();
 			box = new BoxView { Color = Color.Accent };
 
@@ -110,12 +112,6 @@ namespace Ritmodelanoche
 					return	(parent.Height - TapSuccess.Height ) / 2;
 				})
 			);
-
-			this.Content = new StackLayout {
-				Children = {
-					simpleLayout
-				}
-			};
 		}
 
 		void HandlePageSizeChanged(object sender, EventArgs args)
