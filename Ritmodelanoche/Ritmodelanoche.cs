@@ -10,9 +10,8 @@ namespace Ritmodelanoche
 
 		public App ()
 		{
-
 			var main = new RitmoDeLaNocheMainPage ();
-		   MainPage = main;
+			MainPage = main;
 		}
 
 		protected override void OnStart ()

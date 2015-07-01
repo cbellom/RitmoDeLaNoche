@@ -4,12 +4,55 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 	x:Class="Ritmodelanoche.RitmoDeLaNocheMainPage">
 
-	<Label x:Name="score" 
+	<RelativeLayout >
+
+		<AbsoluteLayout 
+			x:Name="timed_box_wrapper"
+			BackgroundColor="Transparent"
+			RelativeLayout.WidthConstraint = 
+	            "{ConstraintExpression Type=RelativeToParent,
+	                                   Property=Width,
+	                                   Factor=1}"
+			RelativeLayout.HeightConstraint = 
+	                "{ConstraintExpression Type=RelativeToParent,
+	                                       Property=Height,
+	                                       Factor=1}">
+      	</AbsoluteLayout>
+
+		<AbsoluteLayout 
+			x:Name="drawables_wrapper"
+			BackgroundColor="Transparent"
+			RelativeLayout.WidthConstraint = 
+	            "{ConstraintExpression Type=RelativeToParent,
+	                                   Property=Width,
+	                                   Factor=1}"
+			RelativeLayout.HeightConstraint = 
+	                "{ConstraintExpression Type=RelativeToParent,
+	                                       Property=Height,
+	                                       Factor=1}"
+			>
+
+		    <Image Source="barra_contador"
+		           AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+		           AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+			<Image Source="marco_contador"
+		    	AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+		    	AbsoluteLayout.LayoutFlags="PositionProportional" />
+
+		    <Image Source="tap_exito"
+				AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
+				AbsoluteLayout.LayoutFlags="PositionProportional"
+		    />
+
+		    <Label x:Name="score_label" 
 		    	Text="0"
 		    	TextColor="White"
 		    	FontSize="36"
 				AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1"
 				AbsoluteLayout.LayoutFlags="PositionProportional" />
+		</AbsoluteLayout>
+	</RelativeLayout>
 
 	<ContentPage.Content>
 	</ContentPage.Content>
