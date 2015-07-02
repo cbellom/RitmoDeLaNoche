@@ -9,12 +9,12 @@ namespace Ritmodelanoche
 {
 	public partial class RitmoDeLaNocheMainPage : ContentPage
 	{
-		private const double ValidTapMinimumBoxFill = 0.3;
-		private const double ValidTapMaximumBoxFill = 0.7;
+		private const double ValidTapMinimumBoxFill = 0.4;
+		private const double ValidTapMaximumBoxFill = 0.6;
 
-		int fillPercentage;
 		int tapCount;
 		bool tapIsValid;
+		bool receivingTaps;
 
 		Label scoreLabel;
 		private BoxView box;
@@ -48,6 +48,7 @@ namespace Ritmodelanoche
 			drawablesWrapper.GestureRecognizers.Add(tapGestureRecognizer);
 
 			tapSuccessIndicatorImage = this.FindByName<Image>("tap_success_indicator");
+			tapSuccessIndicatorImage.IsVisible = false;
 		}
 
 		void HandlePageSizeChanged(object sender, EventArgs args)
@@ -57,8 +58,10 @@ namespace Ritmodelanoche
 
 		bool HandleTimerTick()
 		{
-			if (elapsedTime + 16 > duration)
+			if (elapsedTime + 16 > duration) {
 				elapsedTime = 0;
+				resetTapSuccessIndicator ();
+			}
 			elapsedTime += 16;
 			double cutoff = (this.Height * elapsedTime) / duration;
 			if (this.Height - cutoff <= 0)
@@ -85,20 +88,28 @@ namespace Ritmodelanoche
 			
 		void OnTapGestureRecognizerTapped(object sender, EventArgs args)
 		{
-			tapCount++;
-			scoreLabel.Text = String.Format(
-				"{0}",
-				tapCount);
+			if (receivingTaps) {
+				if (tapIsValid) {
+					tapCount++;
+					scoreLabel.Text = String.Format(
+						"{0}",
+						tapCount);
+				}
 
-			drawTapSuccessOrFailIndicator ();
+				receivingTaps = false;
+
+				drawTapSuccessIndicator ();
+			}
 		}
 
-		void drawTapSuccessOrFailIndicator(){
+		void drawTapSuccessIndicator(){
 			if (tapIsValid) {
 				tapSuccessIndicatorImage.Source = "tap_exito.png";
 			} else {
 				tapSuccessIndicatorImage.Source = "tap_error.png";
 			}
+
+			tapSuccessIndicatorImage.IsVisible = true;
 		}
 
 		void setTapValidity(double height, double cutoff){
@@ -109,6 +120,11 @@ namespace Ritmodelanoche
 			} else {
 				tapIsValid = false;
 			}
+		}
+
+		void resetTapSuccessIndicator(){
+			tapSuccessIndicatorImage.IsVisible = false;
+			receivingTaps = true;
 		}
 
 	}
