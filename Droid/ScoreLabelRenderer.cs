@@ -20,7 +20,7 @@ namespace Ritmodelanoche.Droid
 {
 	public class ScoreLabelRenderer : LabelRenderer
 	{
-		private const string Tag = "ScoreLabelRenderer";
+		private new const string Tag = "ScoreLabelRenderer";
 		
 		public ScoreLabelRenderer ()
 		{

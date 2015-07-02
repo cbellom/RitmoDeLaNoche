@@ -9,7 +9,12 @@ namespace Ritmodelanoche
 {
 	public partial class RitmoDeLaNocheMainPage : ContentPage
 	{
+		private const double ValidTapMinimumBoxFill = 0.3;
+		private const double ValidTapMaximumBoxFill = 0.7;
+
+		int fillPercentage;
 		int tapCount;
+		bool tapIsValid;
 
 		Label scoreLabel;
 		private BoxView box;
@@ -19,9 +24,13 @@ namespace Ritmodelanoche
 		AbsoluteLayout drawablesWrapper;
 		AbsoluteLayout boxWrapper;
 
+		Image tapSuccessIndicatorImage;
+
 		public RitmoDeLaNocheMainPage ()
 		{
 			InitializeComponent ();
+
+			tapIsValid = false;
 
 			drawablesWrapper = this.FindByName<AbsoluteLayout>("drawables_wrapper");
 			box = new BoxView{Color = Color.Accent};
@@ -38,6 +47,7 @@ namespace Ritmodelanoche
 			tapGestureRecognizer.Tapped += OnTapGestureRecognizerTapped;
 			drawablesWrapper.GestureRecognizers.Add(tapGestureRecognizer);
 
+			tapSuccessIndicatorImage = this.FindByName<Image>("tap_success_indicator");
 		}
 
 		void HandlePageSizeChanged(object sender, EventArgs args)
@@ -55,6 +65,9 @@ namespace Ritmodelanoche
 				drawBox(this.Height);
 			else
 				drawBox(this.Height - cutoff);
+
+			setTapValidity(this.Height, cutoff);
+
 			return true;
 		}
 
@@ -76,7 +89,28 @@ namespace Ritmodelanoche
 			scoreLabel.Text = String.Format(
 				"{0}",
 				tapCount);
+
+			drawTapSuccessOrFailIndicator ();
 		}
+
+		void drawTapSuccessOrFailIndicator(){
+			if (tapIsValid) {
+				tapSuccessIndicatorImage.Source = "tap_exito.png";
+			} else {
+				tapSuccessIndicatorImage.Source = "tap_error.png";
+			}
+		}
+
+		void setTapValidity(double height, double cutoff){
+			double percentage = cutoff/height;
+
+			if (percentage >= ValidTapMinimumBoxFill && percentage <= ValidTapMaximumBoxFill) {
+				tapIsValid = true;
+			} else {
+				tapIsValid = false;
+			}
+		}
+
 	}
 }
 
